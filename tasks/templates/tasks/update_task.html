@@ -1,0 +1,29 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>Update Task</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Update Task</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="title" class="form-control" id="id_title">
+            <input type="checkbox" name="complete" class="form-check-input" id="id_complete">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Task</button>
+    </form>
+</div>
+<footer class="text-center mt-5"> <p>© 2024 Vortex. All rights reserved.</p> </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

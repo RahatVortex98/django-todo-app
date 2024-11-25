@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>To-Do List</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">To-Do List</h1>
+    <form method="POST" action="/" class="form-inline mb-4">
+        {% csrf_token %}
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" name="title" class="form-control mr-2" id="id_title">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Create Task</button>
+    </form>
+    <div class="list-group">
+        {% for task in tasks %}
+            <div class="list-group-item task-item d-flex justify-content-between align-items-center">
+                <div>
+                    {% if task.complete %}
+                        <strike>{{ task }}</strike>
+                    {% else %}
+                        <span>{{ task }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <a href="{% url 'update_task' task.id %}" class="btn btn-secondary btn-sm">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<footer class="text-center mt-5"> <p>© 2024 Vortex. All rights reserved.</p> </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
